@@ -52,5 +52,14 @@ jobs:
       - name: Vite and Tailwind build
         run: npm run build
 
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Playwright smoke tests
+        run: npm run test:e2e
+
+      - name: Lighthouse CI
+        run: npm run lighthouse
+
       - name: Composer audit
         run: composer audit --no-interaction
