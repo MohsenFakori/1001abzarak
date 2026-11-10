@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-pal="candy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GameHub UI Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Baloo+Bhaijaan+2:wght@500;700&family=Lemonada:wght@500;700&family=Rakkas&family=Vazirmatn:wght@400;700&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+:root{--p:#7C3AED;--s:#EC4899;--cta:#F97316;--bg:#FAF5FF;--sf:#fff;--tx:#1E1B4B;--mu:#6B7280;--bd:#E9D5FF;--r:16px;--fd:'Lalezar','Fredoka',cursive;--fb:'Vazirmatn',sans-serif}
+[data-pal=mint]{--p:#059669;--s:#06B6D4;--cta:#F43F5E;--bg:#F0FDF9;--bd:#A7F3D0;--tx:#064E3B}
+[data-pal=sun]{--p:#EA580C;--s:#EAB308;--cta:#2563EB;--bg:#FFFBEB;--bd:#FED7AA;--tx:#431407}
+[data-mode=dark]{--bg:#0F0B1E;--sf:#1B1535;--tx:#F5F3FF;--mu:#A1A1AA;--bd:#2E2650}
+*{box-sizing:border-box;margin:0}
+body{font:400 15px/1.8 var(--fb);background:var(--bg);color:var(--tx)}
+h1,h2,h3,.fd{font-family:var(--fd);font-weight:400}
+h2{font-size:28px;margin:48px 0 4px}h3{font-size:18px;margin:20px 0 8px}
+.w{max-width:1100px;margin:auto;padding:0 20px}
+.mu{color:var(--mu);font-size:13px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:2px solid var(--bd)}
+header .w{display:flex;align-items:center;gap:12px;height:60px}
+.logo{font:24px var(--fd);color:var(--p);margin-inline-end:auto;display:flex;gap:8px;align-items:center}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.card{background:var(--sf);border:2px solid var(--bd);border-radius:var(--r);padding:16px;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 0 var(--bd)}
+/* buttons */
+.b{font:700 15px var(--fd);letter-spacing:.3px;display:inline-flex;gap:8px;align-items:center;justify-content:center;border:0;border-radius:14px;padding:10px 20px;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--p),var(--s));box-shadow:0 4px 0 rgba(0,0,0,.25);transition:.15s;min-height:44px}
+.b:hover{transform:translateY(-2px);filter:brightness(1.08)}.b:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.b.c{background:var(--cta)}.b.o{background:none;color:var(--p);box-shadow:inset 0 0 0 2px var(--p)}.b.g{background:none;color:var(--tx);box-shadow:none}
+.b.sm{padding:4px 12px;min-height:32px;font-size:13px}.b.lg{padding:14px 32px;font-size:18px}
+.b:disabled{opacity:.45;cursor:not-allowed;transform:none}
+:focus-visible{outline:3px solid var(--cta);outline-offset:2px}
+.bd{display:inline-block;font:12px var(--fb);padding:1px 10px;border-radius:99px;background:var(--bd);color:var(--tx)}
+.bd.h{background:var(--cta);color:#fff}.bd.n{background:#22C55E;color:#fff}
+.ch{border:2px solid var(--bd);background:var(--sf);color:var(--tx);border-radius:99px;padding:4px 16px;cursor:pointer;font:15px var(--fd)}
+.ch[aria-pressed=true]{background:var(--p);color:#fff;border-color:var(--p)}
+/* game card */
+.th{height:120px;border-radius:12px;display:grid;place-items:center;font-size:52px;color:#fff;margin-bottom:12px;background:linear-gradient(135deg,var(--p),var(--s))}
+.th.t2{background:linear-gradient(135deg,var(--s),var(--cta))}.th.t3{background:linear-gradient(135deg,var(--cta),var(--p))}
+.card h3{margin:0 0 4px}.meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+/* form */
+.in{width:100%;padding:10px 14px;border-radius:12px;border:2px solid var(--bd);background:var(--sf);color:var(--tx);font:inherit}
+.in:focus{border-color:var(--p);outline:0;box-shadow:0 0 0 4px color-mix(in srgb,var(--p) 25%,transparent)}
+.sw{appearance:none;width:48px;height:26px;border-radius:99px;background:var(--bd);position:relative;cursor:pointer;transition:.2s}
+.sw::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s}
+.sw:checked{background:var(--p)}.sw:checked::after{inset-inline-start:25px}
+input[type=range]{accent-color:var(--p);width:100%}
+.pr{height:14px;border-radius:99px;background:var(--bd);overflow:hidden}.pr i{display:block;height:100%;width:60%;background:linear-gradient(90deg,var(--p),var(--s));border-radius:99px;transition:width .3s}
+.sw-c{width:100%;height:56px;border-radius:12px;display:flex;align-items:end;padding:6px;color:#fff;font:11px monospace;direction:ltr}
+/* ads */
+.ad{position:relative;display:grid;place-items:center;max-width:100%;border:2px dashed var(--mu);border-radius:12px;color:var(--mu);font:12px monospace;direction:ltr;background:repeating-linear-gradient(45deg,transparent 0 10px,color-mix(in srgb,var(--mu) 8%,transparent) 10px 20px)}
+.ad::before{content:"تبلیغات";position:absolute;top:-10px;inset-inline-end:10px;background:var(--bg);padding:0 8px;font:11px var(--fb);color:var(--mu)}
+.nat{border-color:var(--cta);position:relative}.nat .bd{position:absolute;top:10px;inset-inline-start:10px;z-index:1}
+#anc{position:fixed;bottom:0;inset-inline:0;z-index:30;display:none;justify-content:center;padding:8px;background:var(--sf);border-top:2px solid var(--bd)}
+#anc button{position:absolute;top:-14px;inset-inline-end:12px;border-radius:50%;width:28px;height:28px;border:2px solid var(--bd);background:var(--sf);color:var(--tx);cursor:pointer}
+/* modal & toast */
+dialog{border:0;border-radius:24px;padding:28px;background:var(--sf);color:var(--tx);max-width:min(440px,92vw);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4);margin:auto}
+dialog::backdrop{background:rgba(15,11,30,.65);backdrop-filter:blur(4px)}
+dialog[open]{animation:pop .25s}@keyframes pop{from{transform:scale(.85);opacity:0}}
+dialog h2{margin:0 0 8px;font-size:30px}
+#ts{position:fixed;top:72px;inset-inline-start:20px;z-index:50;display:grid;gap:8px}
+.t{background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:12px;animation:pop .25s}
+label.l{display:block;font-size:13px;margin:10px 0 4px}
+.in.err{border-color:#EF4444}.in.ok{border-color:#22C55E}.hint{font-size:12px;color:var(--mu);min-height:18px}.hint.e{color:#EF4444}
+.ig{display:flex;align-items:center;gap:8px;border:2px solid var(--bd);border-radius:12px;background:var(--sf);padding:0 12px;color:var(--mu)}
+.ig .in{border:0;box-shadow:none;padding-inline:0}.ig:focus-within{border-color:var(--p)}.ig:has(.err){border-color:#EF4444}
+.ig button{background:none;border:0;color:var(--mu);cursor:pointer;font-size:20px;min-width:32px}
+textarea.in{resize:vertical}select.in{cursor:pointer}
+.seg{display:inline-flex;background:var(--bd);border-radius:12px;padding:4px}.seg button{border:0;background:none;color:var(--tx);padding:6px 16px;border-radius:9px;cursor:pointer;font:15px var(--fd)}.seg button[aria-pressed=true]{background:var(--sf);box-shadow:0 2px 0 rgba(0,0,0,.15)}
+.dz{border:2px dashed var(--p);border-radius:var(--r);padding:24px;text-align:center;cursor:pointer;color:var(--mu)}.dz:hover{background:color-mix(in srgb,var(--p) 8%,transparent)}
+.otp{display:flex;gap:8px;direction:ltr}.otp input{width:46px;height:52px;text-align:center;font:24px var(--fd);padding:0}
+.rt i{cursor:pointer;color:var(--bd);font-size:28px}
+.al{display:flex;gap:10px;align-items:center;padding:12px 16px;border-radius:12px;border-inline-start:6px solid;background:var(--sf)}
+.al.i{border-color:#3B82F6}.al.s{border-color:#22C55E}.al.w{border-color:#EAB308}.al.e{border-color:#EF4444}
+table{width:100%;border-collapse:collapse}th,td{padding:10px;text-align:start;border-bottom:1px solid var(--bd)}th{font:17px var(--fd)}
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--bd)}.tabs button{background:none;border:0;padding:8px 18px;cursor:pointer;color:var(--mu);font:18px var(--fd);border-bottom:3px solid transparent;margin-bottom:-2px}.tabs button[aria-selected=true]{color:var(--p);border-color:var(--p)}
+details{background:var(--sf);border:2px solid var(--bd);border-radius:12px;padding:10px 16px;margin-bottom:8px}summary{cursor:pointer;font:18px var(--fd)}
+.pgn{display:flex;gap:6px;margin-top:8px}.pgn button{width:40px;height:40px;border-radius:12px;border:2px solid var(--bd);background:var(--sf);color:var(--tx);cursor:pointer}.pgn button[aria-current]{background:var(--p);color:#fff;border-color:var(--p)}
+.sk{border-radius:8px;background:linear-gradient(90deg,var(--bd) 25%,var(--sf) 50%,var(--bd) 75%);background-size:200%;animation:sk 1.2s infinite}@keyframes sk{to{background-position:-200%}}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font:18px var(--fd);background:linear-gradient(135deg,var(--p),var(--s))}
+.tip{position:relative}.tip:hover::after,.tip:focus::after{content:attr(data-t);position:absolute;bottom:120%;inset-inline-start:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:4px 10px;border-radius:8px;font-size:12px;white-space:nowrap}
+svg.cv{width:100%;height:auto;display:block}.cv text{fill:var(--mu);font:11px var(--fb)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="w">
+  <div class="logo"><i data-i="g"></i> گیم‌هاب</div>
+  <button class="b g sm" id="mode" aria-label="تغییر حالت تاریک"><i data-i="mo"></i> تاریک/روشن</button>
+  <button class="b c sm" onclick="ad(0)">تست تبلیغ</button>
+</div></header>
+<div id="ts" aria-live="polite"></div>
+
+<main class="w">
+<h1 style="font-size:44px;margin-top:32px">UI Kit <span style="color:var(--p)">گیم‌هاب</span></h1>
+<p class="mu">کیت رابط کاربری برای سایت بازی و ابزارهای کاربردی — با اسلات‌های تبلیغاتی استاندارد IAB. الهام از ساختار «استایل + پالت + جفت‌فونت» در uupm.cc</p>
+
+<h2>۱. انتخاب‌گرها (فونت، آیکن، پالت)</h2>
+<p class="mu">همین‌جا ترکیب‌ها را امتحان کن؛ کل صفحه فوراً تغییر می‌کند.</p>
+<h3>فونت تیترها</h3><div class="row" id="fonts"></div>
+<h3>پک آیکن</h3><div class="row" id="packs"></div>
+<h3>پالت رنگ</h3><div class="row" id="pals"></div>
+
+<h2>۲. توکن‌ها</h2>
+<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))" id="tok"></div>
+<h3>تایپوگرافی</h3>
+<div class="card"><div class="fd" style="font-size:40px">تیتر بزرگ بازی ۱۲۳ Game</div><div class="fd" style="font-size:26px">زیرتیتر بخش ابزارها</div><p>متن بدنه با Vazirmatn برای خوانایی بالا. این یک پاراگراف نمونه است برای توضیح بازی یا ابزار.</p><p class="mu">متن کمرنگ برای توضیحات فرعی</p></div>
+
+<h2>۳. آیکن‌ها</h2>
+<div class="card row" id="icons" style="font-size:28px;gap:22px"></div>
+
+<h2>۴. دکمه‌ها و چیپ‌ها</h2>
+<div class="row"><button class="b"><i data-i="pl"></i> شروع بازی</button><button class="b c">دریافت جایزه</button><button class="b o">تنظیمات</button><button class="b g">انصراف</button><button class="b" disabled>غیرفعال</button></div>
+<div class="row" style="margin-top:12px"><button class="b sm">کوچک</button><button class="b">متوسط</button><button class="b lg">بزرگ</button><span class="bd">جدید</span><span class="bd h">داغ</span><span class="bd n">رایگان</span></div>
+<div class="row" style="margin-top:12px" id="cats"></div>
+
+<h2>۵. کارت بازی و ابزار</h2>
+<div class="grid">
+  <article class="card"><div class="th"><i data-i="g"></i></div><h3>ماز سریع</h3><p class="mu">از مسیرها فرار کن و رکورد بزن.</p><div class="meta"><span class="bd h">داغ</span><button class="b sm"><i data-i="pl"></i> بازی</button></div></article>
+  <article class="card"><div class="th t2"><i data-i="d"></i></div><h3>تاس‌انداز</h3><p class="mu">ابزار شانس برای بازی‌های دورهمی.</p><div class="meta"><span class="bd n">ابزار</span><button class="b sm">باز کن</button></div></article>
+  <article class="card"><div class="th t3"><i data-i="c"></i></div><h3>ماشین‌حساب سن</h3><p class="mu">سن دقیقت را تا روز و ساعت ببین.</p><div class="meta"><span class="bd">ابزار</span><button class="b sm">باز کن</button></div></article>
+  <article class="card nat"><span class="bd h">حمایت‌شده</span><div class="th t2"><i data-i="gift"></i></div><h3>کارت تبلیغ بومی</h3><p class="mu">هم‌شکل کارت‌ها، با برچسب شفاف.</p><div class="meta"><span></span><button class="b c sm">بیشتر</button></div></article>
+</div>
+
+<h2>۶. فرم و بازخورد</h2>
+<div class="grid">
+  <div class="card"><label>جستجو</label><input class="in" placeholder="نام بازی یا ابزار…"><h3>صدا</h3><input type="range"></div>
+  <div class="card"><div class="row" style="justify-content:space-between"><span>صدای بازی</span><input type="checkbox" class="sw" checked></div><h3>پیشرفت</h3><div class="pr"><i id="pg"></i></div><button class="b sm" style="margin-top:12px" onclick="toast('ذخیره شد ✓')">نمایش Toast</button></div>
+</div>
+
+<h2>۷. اسلات‌های تبلیغاتی</h2>
+<p class="mu">همه ابعاد استاندارد با برچسب «تبلیغات». برای جلوگیری از CLS، ابعاد را ثابت نگه دار (min-height).</p>
+<div class="row" id="ads" style="align-items:flex-start;gap:28px"></div>
+<h3>نوار چسبان پایین (Anchor)</h3>
+<button class="b o sm" onclick="anc.style.display='flex'">نمایش Anchor</button>
+
+<h2>۸. مودال‌ها</h2>
+<div class="row">
+  <button class="b" onclick="go.showModal()">پایان بازی</button>
+  <button class="b c" onclick="ad(0)">تبلیغ میان‌صفحه‌ای</button>
+  <button class="b c" onclick="ad(1)">تبلیغ پاداشی</button>
+</div>
+
+<h2>۹. ورودی‌ها (Inputs)</h2>
+<div class="grid">
+<div class="card"><h3>متن</h3>
+<label class="l">جستجو با آیکن</label><div class="ig"><i data-i="se"></i><input class="in" placeholder="جستجوی بازی…"></div>
+<label class="l">رمز عبور + نمایش</label><div class="ig"><input class="in" id="pw" type="password" value="123456"><button type="button" onclick="pw.type=pw.type=='password'?'text':'password'" aria-label="نمایش رمز"><i data-i="eye"></i></button></div>
+<label class="l">چندخطی</label><textarea class="in" rows="3" placeholder="پیام شما…"></textarea></div>
+<div class="card"><h3>وضعیت‌ها</h3>
+<label class="l">عادی</label><input class="in" placeholder="نام کاربری">
+<label class="l">خطا</label><input class="in err" value="ab"><div class="hint e">حداقل ۳ کاراکتر</div>
+<label class="l">موفق</label><input class="in ok" value="gamer_91"><div class="hint">این نام آزاد است</div>
+<label class="l">غیرفعال</label><input class="in" disabled value="غیرفعال"></div>
+<div class="card"><h3>انتخاب‌ها</h3>
+<label class="l">لیست کشویی</label><select class="in"><option>همه بازی‌ها<option>پازل<option>اکشن</select>
+<label class="l">تاریخ</label><input class="in" type="date">
+<label class="l">رنگ</label><input class="in" type="color" value="#7C3AED" style="height:44px;padding:4px">
+<label class="l">عدد (Stepper)</label><div class="ig" style="justify-content:space-between"><button type="button" onclick="nm.stepDown()" aria-label="کم">−</button><input class="in" id="nm" type="number" value="3" style="text-align:center"><button type="button" onclick="nm.stepUp()" aria-label="زیاد">+</button></div></div>
+<div class="card"><h3>چک‌باکس، رادیو، سگمنت</h3>
+<label><input type="checkbox" checked style="accent-color:var(--p)"> قبول قوانین</label><br>
+<label><input type="radio" name="r" checked style="accent-color:var(--p)"> آسان</label> <label><input type="radio" name="r" style="accent-color:var(--p)"> سخت</label>
+<div class="seg" id="sg" style="margin-top:10px"><button aria-pressed="true">روزانه</button><button aria-pressed="false">هفتگی</button><button aria-pressed="false">ماهانه</button></div>
+<h3>امتیازدهی</h3><div class="rt" id="rt"></div><h3>کد تأیید (OTP)</h3><div class="otp" id="otp"></div></div>
+<div class="card"><h3>آپلود فایل</h3><div class="dz" onclick="fl.click()"><i data-i="up" style="font-size:40px;color:var(--p)"></i><div>فایل را اینجا رها کن یا کلیک کن</div></div><input type="file" id="fl" hidden onchange="toast(this.files[0]?.name||'')"></div>
+</div>
+<h2>۱۰. فرم کامل با اعتبارسنجی</h2>
+<form class="card" id="fm" novalidate style="max-width:520px"><h3>ثبت‌نام</h3>
+<label class="l">ایمیل</label><div class="ig"><i data-i="ml"></i><input class="in" id="em" type="email" placeholder="you@mail.com" style="direction:ltr"></div><div class="hint" id="eh"></div>
+<label class="l">رمز عبور (حداقل ۶ کاراکتر)</label><div class="ig"><i data-i="us"></i><input class="in" id="p2" type="password"></div><div class="hint" id="ph2"></div>
+<label class="l">سطح</label><select class="in"><option>مبتدی<option>حرفه‌ای</select>
+<div class="row" style="margin-top:14px"><button class="b">ثبت‌نام</button><button type="reset" class="b g">پاک‌کردن</button></div></form>
+<h2>۱۱. نمودارها (SVG بدون کتابخانه)</h2>
+<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
+<div class="card"><h3>بازدید هفتگی (ستونی)</h3><div id="c1"></div></div>
+<div class="card"><h3>روند امتیاز (خطی)</h3><div id="c2"></div></div>
+<div class="card"><h3>سهم دسته‌ها (دونات)</h3><div id="c3"></div><div class="row mu" style="justify-content:center"><span><b style="color:var(--p)">●</b> بازی</span><span><b style="color:var(--s)">●</b> ابزار</span><span><b style="color:var(--cta)">●</b> سرگرمی</span></div></div>
+<div class="card"><h3>شاخص‌های درآمد</h3><div id="c4"></div></div></div>
+<h2>۱۲. جدول و رتبه‌بندی</h2>
+<div class="card" style="overflow-x:auto"><table><thead><tr><th>#<th>بازیکن<th>بازی<th>امتیاز<tbody id="tb"></table><div class="pgn" id="pgn"></div></div>
+<h2>۱۳. ناوبری و محتوا</h2>
+<div class="tabs" id="tbs" role="tablist"><button role="tab" aria-selected="true">بازی‌ها</button><button role="tab" aria-selected="false">ابزارها</button><button role="tab" aria-selected="false">برترین‌ها</button></div>
+<div class="card" id="tp" style="margin-top:12px">محتوای تب «بازی‌ها»</div>
+<h3>آکاردئون (FAQ)</h3><details open><summary>چطور امتیاز بگیرم؟</summary><p class="mu">با تکمیل مرحله‌ها و دیدن تبلیغ پاداشی.</p></details><details><summary>آیا بازی‌ها رایگان‌اند؟</summary><p class="mu">بله، درآمد سایت از تبلیغات است.</p></details>
+<h3>مسیر (Breadcrumb)</h3><div class="mu">خانه › بازی‌ها › پازل</div>
+<h2>۱۴. هشدار، اسکلتون، آواتار و ...</h2>
+<div class="grid">
+<div style="display:grid;gap:8px"><div class="al i"><i data-i="in"></i>اطلاعیه: نسخه جدید آمد</div><div class="al s"><i data-i="ck"></i>موفق: ذخیره شد</div><div class="al w"><i data-i="wa"></i>هشدار: اینترنت ضعیف است</div><div class="al e"><i data-i="x"></i>خطا: اتصال قطع شد</div></div>
+<div class="card"><h3>اسکلتون (Loading)</h3><div class="sk" style="height:80px"></div><div class="sk" style="height:14px;margin-top:10px;width:70%"></div><div class="sk" style="height:14px;margin-top:8px;width:40%"></div></div>
+<div class="card"><h3>آواتار و تولتیپ</h3><div class="row"><div class="av">ع</div><div class="av" style="background:var(--cta)">م</div><button class="b sm tip" data-t="این یک راهنماست">هاور کن</button></div></div>
+<div class="card" style="text-align:center"><div style="font-size:48px;color:var(--mu)"><i data-i="g"></i></div><h3>بازی‌ای پیدا نشد</h3><p class="mu">فیلتر را تغییر بده.</p><button class="b sm">بازگشت</button></div></div>
+<h2>۱۵. چک‌لیست کیفیت</h2>
+<div class="card"><ul style="padding-inline-start:20px"><li>آیکن SVG/فونت، بدون ایموجی در UI</li><li>هدف لمسی حداقل ۴۴px، فوکوس قابل‌مشاهده</li><li>کنتراست در حالت تاریک و روشن</li><li>تبلیغ همیشه برچسب‌دار و دور از دکمه‌های اصلی بازی (فاصله ≥ ۱۶px)</li><li>دکمه بستن مودال تبلیغ پس از شمارش ≤ ۵ثانیه</li></ul></div>
+<div style="height:90px"></div>
+</main>
+
+<div id="anc"><button onclick="anc.style.display='none'" aria-label="بستن"><i data-i="x"></i></button><div class="ad" style="width:728px;height:90px">728×90</div></div>
+
+<dialog id="go"><div style="font-size:60px;color:var(--cta)"><i data-i="st"></i></div><h2>امتیاز: ۱۲۴۰</h2><p class="mu">رکورد جدید! می‌خوای ادامه بدی؟</p><div class="row" style="justify-content:center;margin-top:16px"><button class="b" onclick="go.close()">بازی دوباره</button><button class="b c" onclick="go.close();ad(1)">+۱ جان با دیدن تبلیغ</button></div></dialog>
+
+<dialog id="adl"><div class="mu" id="adt"></div><div class="ad" style="width:300px;height:250px;margin:16px auto">300×250</div><div class="pr" id="adp" style="display:none"><i style="width:0"></i></div><button class="b" id="adc" disabled style="margin-top:14px"></button></dialog>
+
+<script>
+const $=s=>document.querySelector(s),R=document.documentElement;
+const P={bi:{n:'Bootstrap Icons',c:n=>`bi bi-${n}`,m:{g:'controller',b:'lightning-charge',d:'dice-5',c:'calculator',p:'palette',q:'qr-code',t:'stopwatch',s:'shuffle',h:'heart',x:'x-lg',st:'star-fill',pl:'play-fill',mo:'moon-stars',gift:'gift'}},
+ph:{n:'Phosphor',c:n=>`ph ph-${n}`,m:{g:'game-controller',b:'lightning',d:'dice-five',c:'calculator',p:'palette',q:'qr-code',t:'timer',s:'shuffle',h:'heart',x:'x',st:'star',pl:'play',mo:'moon-stars',gift:'gift'}},
+ti:{n:'Tabler',c:n=>`ti ti-${n}`,m:{g:'device-gamepad-2',b:'bolt',d:'dice-5',c:'calculator',p:'palette',q:'qrcode',t:'stopwatch',s:'arrows-shuffle',h:'heart',x:'x',st:'star',pl:'player-play',mo:'moon-stars',gift:'gift'}}};
+let pack='ph';
+Object.assign(P.bi.m,{eye:'eye',se:'search',up:'cloud-upload',ck:'check-lg',in:'info-circle',wa:'exclamation-triangle',us:'person',ml:'envelope'});
+Object.assign(P.ph.m,{eye:'eye',se:'magnifying-glass',up:'cloud-arrow-up',ck:'check',in:'info',wa:'warning',us:'user',ml:'envelope'});
+Object.assign(P.ti.m,{eye:'eye',se:'search',up:'cloud-upload',ck:'check',in:'info-circle',wa:'alert-triangle',us:'user',ml:'mail'});
+const ic=()=>document.querySelectorAll('[data-i]').forEach(e=>e.className=P[pack].c(P[pack].m[e.dataset.i]));
+$('#icons').innerHTML=Object.keys(P.bi.m).map(k=>`<i data-i="${k}" title="${k}"></i>`).join('');
+function group(id,items,cur,fn){const el=$(id);el.innerHTML=items.map(([k,l,s])=>`<button class="ch" aria-pressed="${k===cur}" data-k="${k}" style="${s||''}">${l}</button>`).join('');
+ el.onclick=e=>{const b=e.target.closest('button');if(!b)return;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));fn(b.dataset.k)}}
+group('#fonts',[["'Lalezar'",'لالزار','font-family:Lalezar'],["'Baloo Bhaijaan 2'",'بالو بهیجان','font-family:Baloo Bhaijaan 2'],["'Lemonada'",'لیمونادا','font-family:Lemonada'],["'Rakkas'",'رکاس','font-family:Rakkas'],["'Vazirmatn'",'وزیرمتن (ساده)','font-family:Vazirmatn']],"'Lalezar'",k=>R.style.setProperty('--fd',k+",'Fredoka',cursive"));
+group('#packs',Object.entries(P).map(([k,v])=>[k,v.n]),pack,k=>{pack=k;ic()});
+group('#pals',[['candy','آبنبات'],['mint','نعنایی'],['sun','غروب']],'candy',k=>{R.dataset.pal=k;tok()});
+group('#cats',[['a','همه'],['b','بازی'],['c','ابزار'],['d','محبوب‌ها']],'a',()=>{});
+function tok(){const s=getComputedStyle(R);$('#tok').innerHTML=[['--p','Primary'],['--s','Secondary'],['--cta','CTA'],['--bg','Background'],['--tx','Text'],['--bd','Border']].map(([v,n])=>{const c=s.getPropertyValue(v).trim();return `<div><div class="sw-c" style="background:var(${v});${v=='--bg'||v=='--bd'?'color:#000;border:1px solid var(--bd)':''}">${c}</div><div class="mu">${n}</div></div>`}).join('')}
+$('#mode').onclick=()=>{R.dataset.mode=R.dataset.mode?'':'dark';if(!R.dataset.mode)delete R.dataset.mode;tok()};
+$('#ads').innerHTML=[[728,90,'Leaderboard'],[970,250,'Billboard'],[300,250,'Medium Rectangle'],[336,280,'Large Rectangle'],[300,600,'Half Page'],[160,600,'Skyscraper'],[320,50,'Mobile Banner'],[320,100,'Large Mobile']].map(([w,h,n])=>`<div><div class="ad" style="width:${w}px;height:${h}px">${w}×${h}</div><div class="mu" style="margin-top:6px;direction:ltr">${n}</div></div>`).join('');
+function toast(m){const t=document.createElement('div');t.className='t';t.textContent=m;$('#ts').append(t);setTimeout(()=>t.remove(),2500)}
+let tm;function ad(rw){const d=$('#adl'),b=$('#adc'),pg=$('#adp');let n=rw?10:5;
+ $('#adt').textContent=rw?'ویدیوی پاداشی — تا پایان ببین و جایزه بگیر':'تبلیغات';pg.style.display=rw?'block':'none';b.disabled=true;d.showModal();clearInterval(tm);
+ const tick=()=>{b.textContent=n>0?`ادامه تا ${n} ثانیه دیگر`:(rw?'دریافت جایزه 🎁':'بستن');pg.firstChild.style.width=rw?(100-n*10)+'%':0;if(!n){clearInterval(tm);b.disabled=false}n--};
+ tick();tm=setInterval(tick,1000);b.onclick=()=>{d.close();if(rw)toast('+۱ جان گرفتی!')}}
+$('#adl').addEventListener('cancel',e=>{if($('#adc').disabled)e.preventDefault()});
+setInterval(()=>$('#pg').style.width=(30+Math.random()*70)+'%',1800);
+const D=[40,65,30,85,55,95,70],L=['ش','ی','د','س','چ','پ','ج'];
+$('#c1').innerHTML=`<svg class="cv" viewBox="0 0 320 180">${D.map((v,i)=>`<rect x="${12+i*44}" y="${160-v*1.4}" width="30" height="${v*1.4}" rx="8" fill="${i==5?'var(--cta)':'var(--p)'}"><title>${v}</title></rect><text x="${27+i*44}" y="176" text-anchor="middle">${L[i]}</text>`).join('')}</svg>`;
+const pts=D.map((v,i)=>[20+i*46,150-v*1.4]),pl=pts.join(' ');
+$('#c2').innerHTML=`<svg class="cv" viewBox="0 0 320 170"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--s)" stop-opacity=".5"/><stop offset="1" stop-color="var(--s)" stop-opacity="0"/></linearGradient></defs><polygon points="20,150 ${pl} 296,150" fill="url(#lg)"/><polyline points="${pl}" fill="none" stroke="var(--s)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${pts.map(a=>`<circle cx="${a[0]}" cy="${a[1]}" r="5" fill="var(--sf)" stroke="var(--s)" stroke-width="3"/>`).join('')}</svg>`;
+let o=0;$('#c3').innerHTML=`<svg class="cv" viewBox="0 0 42 42" style="max-width:190px;margin:auto"><g transform="rotate(-90 21 21)">${[45,30,25].map((x,i)=>{const s=`<circle cx="21" cy="21" r="15.9" fill="none" stroke="${['var(--p)','var(--s)','var(--cta)'][i]}" stroke-width="6" stroke-dasharray="${x-1} ${101-x}" stroke-dashoffset="${-o}"/>`;o+=x;return s}).join('')}</g><text x="21" y="23" text-anchor="middle" style="font:6px var(--fd);fill:var(--tx)">۱۰۰٪</text></svg>`;
+$('#c4').innerHTML=[['کاربر فعال','۱۲٫۴K',80],['درآمد تبلیغ','۴٫۲M',55],['نرخ کلیک (CTR)','۲٫۸٪',30]].map(([n,v,w])=>`<div class="row" style="justify-content:space-between"><span>${n}</span><b class="fd">${v}</b></div><div class="pr" style="margin-bottom:12px"><i style="width:${w}%"></i></div>`).join('');
+$('#tb').innerHTML=[['آریا','ماز سریع',9820],['نیلوفر','تاس‌انداز',8710],['سینا','حافظه',7540]].map(([a,b,c],i)=>`<tr><td>${i+1}<td><span class="row"><span class="av" style="width:32px;height:32px;font-size:14px">${a[0]}</span>${a}</span><td>${b}<td><b>${c.toLocaleString('fa')}</b>`).join('');
+$('#pgn').innerHTML=['‹',1,2,3,'›'].map(n=>`<button ${n===1?'aria-current=page':''}>${n}</button>`).join('');
+$('#rt').innerHTML='<i data-i="st"></i>'.repeat(5);
+$('#rt').onclick=e=>{const k=[...$('#rt').children],i=k.indexOf(e.target.closest('i'));if(i>-1)k.forEach((x,j)=>x.style.color=j<=i?'#FACC15':'')};
+$('#otp').innerHTML='<input class="in" maxlength="1" inputmode="numeric" aria-label="رقم">'.repeat(4);
+$('#otp').oninput=e=>{if(e.target.value)e.target.nextElementSibling?.focus()};
+$('#sg').onclick=e=>{const b=e.target.closest('button');if(b)[...$('#sg').children].forEach(x=>x.setAttribute('aria-pressed',x===b))};
+$('#tbs').onclick=e=>{const b=e.target.closest('button');if(!b)return;[...$('#tbs').children].forEach(x=>x.setAttribute('aria-selected',x===b));$('#tp').textContent='محتوای تب «'+b.textContent+'»'};
+$('#fm').onsubmit=e=>{e.preventDefault();const a=/^\S+@\S+\.\S+$/.test(em.value),c=p2.value.length>=6;em.classList.toggle('err',!a);p2.classList.toggle('err',!c);eh.textContent=a?'':'ایمیل معتبر نیست';ph2.textContent=c?'':'حداقل ۶ کاراکتر';eh.className=ph2.className='hint e';if(a&&c)toast('ثبت‌نام انجام شد')};
+ic();tok();
+</script>
+</body>
+</html>
