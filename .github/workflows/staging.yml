@@ -1,0 +1,27 @@
+name: Deploy Staging
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: ${{ vars.STAGING_DEPLOY_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate deployment configuration
+        run: |
+          test -n "${{ secrets.STAGING_HOST }}"
+          test -n "${{ secrets.STAGING_USER }}"
+          test -n "${{ secrets.STAGING_SSH_KEY }}"
+      - name: Deployment pending
+        run: |
+          echo "Staging host-specific deployment command must be configured before enabling this workflow."
+          exit 1
