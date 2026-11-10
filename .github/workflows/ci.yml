@@ -35,7 +35,7 @@ jobs:
         run: cp .env.example .env && php artisan key:generate
 
       - name: Install Node dependencies
-        run: npm ci
+        run: npm install
 
       - name: Laravel Pint
         run: vendor/bin/pint --test
