@@ -1,0 +1,17 @@
+{
+  "ci": {
+    "collect": {
+      "url": ["http://127.0.0.1:8000/"],
+      "numberOfRuns": 1,
+      "startServerCommand": "php artisan serve --host=127.0.0.1 --port=8000",
+      "startServerReadyPattern": "Server running on",
+      "startServerReadyTimeout": 10000
+    },
+    "assert": {
+      "preset": "lighthouse:recommended"
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
