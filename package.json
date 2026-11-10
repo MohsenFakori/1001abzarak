@@ -21,6 +21,7 @@
     "prettier": "^3.0.0",
     "prettier-plugin-php": "^0.24.0",
     "@playwright/test": "^1.56.0",
-    "@lhci/cli": "^0.15.1"
+    "@lhci/cli": "^0.15.1",
+    "concurrently": "^9.2.1"
   }
 }
