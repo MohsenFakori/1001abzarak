@@ -32,7 +32,7 @@ npm run build
 php artisan serve
 ```
 
-جزئیات بیشتر در `docs/development-environment.md` است.
+اسناد مرجع: [PRD](docs/prd/PRD-1000abzarak.md)، [UI Kit](docs/ui-kit/abzarak-uikit.html) و `docs/development-environment.md`.
 
 ## فرمان‌های رایج
 
@@ -59,4 +59,3 @@ Makefile نیز هدف‌های `up`، `down`، `test`، `lint`، `fresh` و `bu
 
 توسعه‌ی فاز اول در `phase-01/scaffold` انجام می‌شود. `main` شاخه‌ی مبنا است و ادغام فقط پس از بررسی و تأیید مالک انجام خواهد شد.
 
-> نسخه‌ی کامل PRD و UI Kit هنوز به این شاخه منتقل نشده‌اند؛ این دو سند باید بدون تغییر محتوایی در مسیرهای `docs/prd/` و `docs/ui-kit/` قرار گیرند.
